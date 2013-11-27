@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Event Type</th>
+      <th>Location</th>
+      <th>Reserve Price</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= @ticket.eventname %></td>
+        <td><%= @ticket.eventtype %></td>
+        <td><%= @ticket.location %></td>
+        <td><%= @ticket.price %></td>
+      </tr>
+      <tr><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td></tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <th>Bidder</th>
+        <th>Bid Price</th>
+      </tr>
+			<% @bids.each do |bid| %>
+	      <tr>
+	        <td></td>
+	        <td></td>
+	        <td><%= bid.bidder %></td>
+	        <td><%= bid.price %></td>
+	      </tr>
+    	<% end %>
+  </tbody>
+</table>
+
+<%= render 'form' %>

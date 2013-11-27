@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scalpr</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <link rel="stylesheet" href="http://railsgirls.com/assets/bootstrap.css">
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+    	<a class="brand" href="/">Scalpr</a>
+    		<ul class="nav">
+          <li class="active"><a href="/events">Events</a></li>
+          <li class="active"><a href="/locations">Locations</a></li>
+          <li class="active"><a href="/eventtypes">Categories</a></li>
+          <li class="active"><a href="/customers">Customers</a></li>
+          <li class="active"><a href="/tickets">Tickets</a></li>
+        </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container"><%= yield %></div>
+
+<%= debug(params) if Rails.env.development? %>
+
+</body>
+</html>

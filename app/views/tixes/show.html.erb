@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h2>This Event is:<h2><br>
+
+<p>
+  <strong>Eventname:</strong>
+  <%= @tix.eventname %>
+</p>
+
+<p>
+  <strong>Eventtype:</strong>
+  <%= @tix.eventtype %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @tix.location %>
+</p>
+
+<p>
+  <strong>Starting Price:</strong>
+  <%= @tix.price %>
+</p>
+
+<p>
+  <strong>Your Bid Price:</strong>
+
+  <%= form_for(@tix) do |f| %>
+    <div class="field">
+      <%= f.label :price %><br>
+      <%= f.number_field :price %>
+    </div>
+	  <div class="actions">
+	    <%= f.submit %>
+	  </div>
+  <% end %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_tix_path(@tix) %> |
+<%= link_to 'Back', tixes_path %>

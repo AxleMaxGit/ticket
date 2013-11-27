@@ -1,0 +1,21 @@
+<%= form_for(@eventtype) do |f| %>
+  <% if @eventtype.errors.any? %>
+    <div id="error_explanation">
+      <h2><font color="red"><%= pluralize(@eventtype.errors.count, "error") %></font> prohibited this eventtype from being saved:</h2>
+
+      <ul>
+      <% @eventtype.errors.full_messages.each do |msg| %>
+        <li><font color="red"><%= msg %></font></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.text_field :category %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

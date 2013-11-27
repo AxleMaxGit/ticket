@@ -1,0 +1,28 @@
+<h1>Listing Event Types</h1>
+
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @eventtypes.each do |eventtype| %>
+      <tr>
+        <td><%= eventtype.category %></td>
+        <td><%= link_to 'Show', eventtype %></td>
+        <td><%= link_to 'Edit', edit_eventtype_path(eventtype) %></td>
+        <td><%= link_to 'Destroy', eventtype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br><br><br>
+
+<h3>Add A New Event Type</h3>
+<%= render 'form' %>
