@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     @eventtypes = Eventtype.all
     @locations = Location.all
   end
-
+ 
   # GET /events/1
   # GET /events/1.json
   def show
