@@ -10,8 +10,7 @@
   </div>
 
   <div>
-  	<%= b.label(:event_id) %>
-  	<%= b.number_field :event_id %>
+  	<%= b.hidden_field :event_id, :value => (params[:id]) %>
   </div
 
   <div class="actions">

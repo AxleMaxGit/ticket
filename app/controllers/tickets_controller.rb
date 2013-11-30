@@ -8,7 +8,7 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @bids = Bid.all
+    @bids = Bid.where("event_id = ?", (params[:id]))
     @customers = Customer.all
   end
 
