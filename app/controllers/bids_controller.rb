@@ -27,8 +27,14 @@ class BidsController < ApplicationController
   def create
     @bid = Bid.new(bid_params)
 
-    #check the highest bid so far (for comparison)
-    @prev_high_bid = Bid.where("event_id = ?", @bid.event_id).order(price: :asc).last.price
+
+    #if there are no previous bids set high_bid value to 0 for comparison
+    if Bid.where("event_id = ?", @bid.event_id).empty?
+      @prev_high_bid = 0
+    else
+      #check the highest bid so far (for comparison)
+      @prev_high_bid = Bid.where("event_id = ?", @bid.event_id).order(price: :asc).last.price
+    end
 
     #if the bid is high enough then save
     if @bid.price > @prev_high_bid
