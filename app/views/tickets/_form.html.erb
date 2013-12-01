@@ -1,5 +1,5 @@
 <%= form_for(@bid) do |b| %>
- 
+
   <div class="field">
     <%= b.label :price %><br>
     <%= b.number_field :price %>
@@ -8,11 +8,9 @@
     <%= b.label :bidder %><br>
     <%= b.select(:bidder, @customers.collect {|c| [c.name] }, { include_blank: true }) %>
   </div>
-
   <div>
   	<%= b.hidden_field :event_id, :value => (params[:id]) %>
   </div
-
   <div class="actions">
     <%= b.submit %>
   </div>
