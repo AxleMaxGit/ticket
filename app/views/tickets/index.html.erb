@@ -22,7 +22,7 @@
         <td><%= event.eventtype %></td>
         <td><%= event.location %></td>
         <td><%= event.price %></td>
-        <td><%= event.price %></td>
+        <td><%= @top_bids[event.id] %></td>
         <td><%= link_to 'Bid', "/tickets/#{event.id}" %></td>
       </tr>
     <% end %>

@@ -5,6 +5,18 @@ class TicketsController < ApplicationController
 
   def index
     @events = Event.all
+    @bids = Bid.all
+    @top_bids = []
+
+    @bids.each do |n|
+      if @top_bids[n.event_id].nil?
+        @top_bids[n.event_id] = n.price
+      else
+        if n.price > @top_bids[n.event_id]
+          @top_bids[n.event_id] = n.price
+        end
+      end      
+    end  
   end
 
   def show
