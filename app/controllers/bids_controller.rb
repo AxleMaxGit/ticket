@@ -27,10 +27,10 @@ class BidsController < ApplicationController
   def create
     @bid = Bid.new(bid_params)
     @eventnum = @bid.event_id
-    @event_reserve_price = Event.find(@eventnum).price
-   
-    puts @event_reserve_price
-    #puts @reserve_price
+    @event_reserve_price = Event.find(@eventnum).price  
+
+    system('clear')
+    puts "The reserve price for this event is #{@event_reserve_price}"
 
     #if there are no previous bids set high_bid value to 0 for comparison
     if Bid.where("event_id = ?", @bid.event_id).empty?
@@ -40,19 +40,24 @@ class BidsController < ApplicationController
       @prev_high_bid = Bid.where("event_id = ?", @bid.event_id).order(price: :asc).last.price
     end
 
-    #check to see if bid meets reserve price
-    if @bid.price <= @event_reserve_price
-      puts "This bid does NOT meet the reserve!!"
-      redirect_to "/tickets/#{@bid.event_id}", notice: 'FAIL!!!  You must bid above the reserve price!!.'
-    #if the bid is high enough then save
-    elsif @bid.price <= @prev_high_bid
-      puts "This bid is NOT high enough!!"
-      redirect_to "/tickets/#{@bid.event_id}", notice: 'FAIL!!!  You must enter the highest bid to win!!.'
+    if @bid.valid?
+      #check to see if bid meets reserve price
+      if @bid.price <= @event_reserve_price
+        puts "This bid does NOT meet the reserve!!"
+        redirect_to "/tickets/#{@bid.event_id}", notice: 'FAIL!!!  You must bid above the reserve price!!.'
+      #if the bid is high enough then save
+      elsif @bid.price <= @prev_high_bid
+        puts "This bid is NOT high enough!!"
+        redirect_to "/tickets/#{@bid.event_id}", notice: 'FAIL!!!  You must enter the highest bid to win!!.'
+      else
+        puts "This bid is winning!!"
+        @bid.save
+        redirect_to "/tickets/#{@bid.event_id}", notice: 'You are WINNING!!'
+      end
     else
-      puts "This bid is winning!!"
-      @bid.save
-      redirect_to "/tickets/#{@bid.event_id}", notice: 'Bid was successfully created.'
+      render action: 'new'
     end
+
 
     # respond_to do |format|
     #   if @bid.save

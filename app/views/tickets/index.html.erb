@@ -10,8 +10,7 @@
       <th>Event Type</th>
       <th>Location</th>
       <th>Reserve Price</th>
-      <th></th>
-      <th></th>
+      <th>Current Bid</th>
       <th></th>
     </tr>
   </thead>
@@ -22,6 +21,7 @@
         <td><%= event.eventname %></td>
         <td><%= event.eventtype %></td>
         <td><%= event.location %></td>
+        <td><%= event.price %></td>
         <td><%= event.price %></td>
         <td><%= link_to 'Bid', "/tickets/#{event.id}" %></td>
       </tr>
