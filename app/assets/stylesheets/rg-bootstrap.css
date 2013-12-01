@@ -43,6 +43,12 @@ a:hover,
 a:active {
   outline: 0;
 }
+
+#notice{
+	color: #FF0000;
+	font-size: 20px;
+}
+
 sub,
 sup {
   position: relative;
