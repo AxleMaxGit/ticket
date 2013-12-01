@@ -27,15 +27,30 @@ class BidsController < ApplicationController
   def create
     @bid = Bid.new(bid_params)
 
-    respond_to do |format|
-      if @bid.save
-        format.html { redirect_to "/tickets/#{@bid.event_id}", notice: 'Bid was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @bid }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @bid.errors, status: :unprocessable_entity }
-      end
+    #check the highest bid so far (for comparison)
+    @prev_high_bid = Bid.where("event_id = ?", @bid.event_id).order(price: :asc).last.price
+
+    #if the bid is high enough then save
+    if @bid.price > @prev_high_bid
+      puts "This bid is higher"
+      @bid.save
+      redirect_to "/tickets/#{@bid.event_id}", notice: 'Bid was successfully created.'
+    #otherwise reject the bid
+    else
+      puts "This bid is NOT high enough!!"
+      redirect_to "/tickets/#{@bid.event_id}", notice: 'FAIL!!!  You must enter the highest bid to win!!.'
     end
+
+
+    # respond_to do |format|
+    #   if @bid.save
+    #     format.html { redirect_to "/tickets/#{@bid.event_id}", notice: 'Bid was successfully created.' }
+    #     format.json { render action: 'show', status: :created, location: @bid }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @bid.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /bids/1
