@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :bidder %><br>
-    <%= f.text_field :bidder %>
+    <%= f.select(:bidder, @customers.collect {|c| [c.name] }, { include_blank: true }) %>
   </div>
   <div class="field">
     <%= f.hidden_field :event_id %>

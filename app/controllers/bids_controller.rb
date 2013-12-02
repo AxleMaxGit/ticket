@@ -15,7 +15,6 @@ class BidsController < ApplicationController
   # GET /bids/new
   def new
     @bid = Bid.new
-    @customers = Customer.all
   end
 
   # GET /bids/1/edit
@@ -26,6 +25,7 @@ class BidsController < ApplicationController
   # POST /bids.json
   def create
     @bid = Bid.new(bid_params)
+    @customers = Customer.all
     @eventnum = @bid.event_id
     @event_reserve_price = Event.find(@eventnum).price  
 
