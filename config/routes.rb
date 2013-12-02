@@ -1,4 +1,7 @@
 Ticket::Application.routes.draw do
+  
+  root to: 'tickets#index'
+
   resources :bids
 
   resources :events
