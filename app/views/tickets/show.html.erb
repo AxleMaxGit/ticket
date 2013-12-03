@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<p><%= @event.attributes %>
+
 <table class="table table-condensed">
   <thead>
     <tr>
@@ -24,7 +26,7 @@
         <th>Bidder</th>
         <th>Bid Price</th>
       </tr>
-			<% @bids.each do |bid| %>
+			<% @event.bids.each do |bid| %>
 	      <tr>
 	        <td></td>
 	        <td></td>
