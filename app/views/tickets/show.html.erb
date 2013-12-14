@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<p><%= @event.attributes %>
-
 <table class="table table-condensed">
   <thead>
     <tr>
@@ -36,5 +34,7 @@
     	<% end %>
   </tbody>
 </table>
+
+<%= render 'errors' %>
 
 <%= render 'form' %>

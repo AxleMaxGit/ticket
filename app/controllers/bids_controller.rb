@@ -55,7 +55,10 @@ class BidsController < ApplicationController
         redirect_to "/tickets/#{@bid.event_id}", notice: 'You are WINNING!!'
       end
     else
-      render action: 'new'
+      if @bid.errors.any? 
+          flash[:errors] = @bid.errors  
+        end
+        redirect_to :back
     end
 
 
